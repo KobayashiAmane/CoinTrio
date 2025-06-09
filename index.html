@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="renderer.js"></script>
     <meta charset="UTF-8" />
     <title>CoinTrio</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f0f0f0;
+      }
+      .jar {
+        width: 150px;
+        height: 200px;
+        background: #fff;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      }
+      .jar h2 {
+        margin: 10px 0;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello CoinTrio!</h1>
-    <p>This is our Electron App!</p>
+    <div class="jar" id="jobHuntJar">
+      <h2>Job Hunting</h2>
+      <!-- placeholder for coin count or icon -->
+      <p>Coins: 0</p>
+    </div>
+    <div class="jar" id="learningJar">
+      <h2>Learning</h2>
+      <p>Coins: 0</p>
+    </div>
+    <div class="jar" id="exerciseJar">
+      <h2>Exercise</h2>
+      <p>Coins: 0</p>
+    </div>
   </body>
 </html>
