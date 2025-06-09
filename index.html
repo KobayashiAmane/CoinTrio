@@ -1,50 +1,114 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src="renderer.js"></script>
-    <meta charset="UTF-8" />
-    <title>CoinTrio</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background: #f0f0f0;
-      }
-      .jar {
-        width: 150px;
-        height: 200px;
-        background: #fff;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-      }
-      .jar h2 {
-        margin: 10px 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="jar" id="jobHuntJar">
-      <h2>Job Hunting</h2>
-      <!-- placeholder for coin count or icon -->
-      <p>Coins: 0</p>
-    </div>
-    <div class="jar" id="learningJar">
-      <h2>Learning</h2>
-      <p>Coins: 0</p>
-    </div>
-    <div class="jar" id="exerciseJar">
-      <h2>Exercise</h2>
-      <p>Coins: 0</p>
-    </div>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="CoinTrio - Electron App for tracking tasks by dropping coins into jars">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    标准的HTML头部区域，包含:
+    1. 文档类型声明 <!DOCTYPE html>
+    2. <html lang="en"> 设置语言 (可改成 "zh-CN" if needed)
+    3. <meta charset="UTF-8"> 保证使用UTF-8字符集
+    4. <meta name="description" ...> 页面描述
+    5. <meta name="viewport" ...> 响应式移动端
+    6. 你也可以在这里引入第三方CSS文件或favicon等
+  -->
+
+  <title>CoinTrio - Track Your Tasks with Coins</title>
+
+  <style>
+    /************************************************
+     * Global Styles
+     * 全局样式定义
+     ************************************************/
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+
+    /************************************************
+     * Coin Style (the draggable coin image)
+     * 硬币区域（可拖拽）
+     ************************************************/
+    #coinPool {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    #coin {
+      width: 50px;
+      height: 50px;
+      cursor: grab;
+    }
+
+    /************************************************
+     * Jar Styles (the three jars)
+     * 三个“罐子”的样式
+     ************************************************/
+    .jar {
+      width: 150px;
+      height: 200px;
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+    .jar h2 {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    Coin Pool
+    硬币区域
+    这里用于放置可拖拽的硬币图片 (PNG files)
+  -->
+  <div id="coinPool">
+    <!-- 
+      By default, we set one coin image source here, e.g. coin1.png 
+      你可以在 renderer.js 中动态替换它的src实现随机图片
+    -->
+    <img id="coin" src="./UI/coin1.png" draggable="true" alt="Coin Image">
+  </div>
+
+  <!--
+    Jars Section
+    三个存钱罐，用于投币
+  -->
+  <div class="jar" id="jobHuntJar">
+    <h2>Job Hunting</h2>
+    <p>Coins: 0</p>
+  </div>
+
+  <div class="jar" id="learningJar">
+    <h2>Learning</h2>
+    <p>Coins: 0</p>
+  </div>
+
+  <div class="jar" id="exerciseJar">
+    <h2>Exercise</h2>
+    <p>Coins: 0</p>
+  </div>
+
+  <!--
+    Script: renderer.js
+    引入渲染进程脚本，处理拖拽及IPC逻辑
+  -->
+  <script src="renderer.js"></script>
+</body>
 </html>
+
